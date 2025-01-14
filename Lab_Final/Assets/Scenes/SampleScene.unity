@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 762e31b3252a6e24e96b1b601f667f91, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1091,6 +1091,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1425762323}
   m_Mesh: {fileID: 4890176300591525589, guid: b2ca6ec7f86d50c49b8a1ab7f0265218, type: 3}
+--- !u!1 &1754438111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1754438113}
+  - component: {fileID: 1754438114}
+  m_Layer: 0
+  m_Name: FlockingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1754438113
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754438111}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 45, z: 45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1754438114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754438111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ea5569f8cd58140a3c2eb95839bb3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fletchingPrefab: {fileID: 4673827866372787755, guid: c190e7a240a043b4b8484c47bc09c52e, type: 3}
+  talonflamePrefab: {fileID: 3752574613737927130, guid: 92fb5af3f22537a4c9961fbafe6329a2, type: 3}
+  numFletchings: 50
+  numTalonflames: 3
+  allFletchings: []
+  allTalonflames: []
+  limits: {x: 60, y: 10, z: 60}
+  goalPos: {x: 0, y: 0, z: 0}
+  minSpeed: 0
+  maxSpeed: 3
+  neighbourDistance: 10
+  rotationSpeed: 3
+  leaderInfluence: 40
 --- !u!1 &1878157855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,3 +1321,4 @@ SceneRoots:
   - {fileID: 821175723}
   - {fileID: 431243300}
   - {fileID: 311828949}
+  - {fileID: 1754438113}

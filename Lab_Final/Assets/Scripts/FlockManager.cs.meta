@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: d0ea5569f8cd58140a3c2eb95839bb3f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - fletchingPrefab: {fileID: 4673827866372787755, guid: c190e7a240a043b4b8484c47bc09c52e, type: 3}
+  - talonflamePrefab: {fileID: 3752574613737927130, guid: 92fb5af3f22537a4c9961fbafe6329a2, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

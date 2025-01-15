@@ -1141,10 +1141,10 @@ MonoBehaviour:
   numTalonflames: 3
   allFletchings: []
   allTalonflames: []
-  limits: {x: 60, y: 10, z: 60}
+  limits: {x: 60, y: 20, z: 60}
   goalPos: {x: 0, y: 0, z: 0}
-  minSpeed: 0
-  maxSpeed: 3
+  minSpeed: 2
+  maxSpeed: 4
   neighbourDistance: 10
   rotationSpeed: 3
   leaderInfluence: 40

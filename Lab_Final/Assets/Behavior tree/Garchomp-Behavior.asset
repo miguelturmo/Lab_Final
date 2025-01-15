@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34a7c8ca992f915438a96c2077353778, type: 3}
+  m_Name: Garchomp-Behavior
+  m_EditorClassIdentifier: 
+  brickName: Assets/Behavior tree/Garchomp-Behavior.asset
+  xml: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<BehaviorBricks xmlns:ref=\"urn:padaone\"
+    version=\"1.0\">\r\n  <BehaviorTree id=\"0\" />\r\n  <runtimeInfo>\r\n    <BehaviorTree
+    id=\"0\" guid=\"97f475416bc3f5a4c956aca84623cc95\" nextId=\"21\">\r\n      <root>\r\n       
+    <SelectorNode id=\"20\" />\r\n      </root>\r\n      <inputParams />\r\n     
+    <outputParams />\r\n      <localParams>\r\n        <localValues>\r\n         
+    <entry name=\"detectedPrey\" type=\"UnityEngine.GameObject\" isBlackboard=\"False\"
+    />\r\n        </localValues>\r\n      </localParams>\r\n    </BehaviorTree>\r\n   
+    <SelectorNode id=\"20\">\r\n      <children>\r\n        <elem>\r\n          <SequenceNode
+    id=\"15\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"14\"
+    />\r\n        </elem>\r\n      </children>\r\n      <inputParams />\r\n     
+    <outputParams />\r\n      <localParams />\r\n    </SelectorNode>\r\n    <SequenceNode
+    id=\"15\">\r\n      <children>\r\n        <elem>\r\n          <ConditionNode
+    id=\"13\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"12\"
+    />\r\n        </elem>\r\n      </children>\r\n      <inputParams />\r\n     
+    <outputParams />\r\n      <localParams />\r\n    </SequenceNode>\r\n    <ActionNode
+    id=\"14\" action=\"MyActions/Wander\">\r\n      <inputParams>\r\n        <inputValues>\r\n         
+    <entry name=\"wanderRadius\" type=\"System.Single\" isBlackboard=\"False\" value=\"20\"
+    />\r\n          <entry name=\"minWanderTime\" type=\"System.Single\" isBlackboard=\"False\"
+    value=\"2\" />\r\n          <entry name=\"maxWanderTime\" type=\"System.Single\"
+    isBlackboard=\"False\" value=\"5\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
+    <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n    <ConditionNode
+    id=\"13\">\r\n      <condition>\r\n        <ConditionEvalNode id=\"0\" />\r\n     
+    </condition>\r\n      <inputParams>\r\n        <inputValues>\r\n          <entry
+    name=\"detectionRange\" type=\"System.Single\" isBlackboard=\"False\" value=\"100\"
+    />\r\n        </inputValues>\r\n      </inputParams>\r\n      <outputParams>\r\n       
+    <outputValues>\r\n          <entry name=\"detectedPrey\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"True\" blackboard=\"detectedPrey\" />\r\n        </outputValues>\r\n     
+    </outputParams>\r\n      <localParams />\r\n    </ConditionNode>\r\n    <ActionNode
+    id=\"12\" action=\"MyActions/ChaseAndDestroy\">\r\n      <inputParams>\r\n       
+    <inputValues>\r\n          <entry name=\"prey\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"False\" />\r\n          <entry name=\"attackRange\" type=\"System.Single\"
+    isBlackboard=\"False\" value=\"2\" />\r\n          <entry name=\"attackDamage\"
+    type=\"System.Single\" isBlackboard=\"False\" value=\"100\" />\r\n        </inputValues>\r\n     
+    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n   
+    <ConditionEvalNode id=\"0\" policy=\"ATOMIC_CHECK\" name=\"MyConditions/IsTargetVisible\">\r\n     
+    <inputParams />\r\n      <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n 
+    </runtimeInfo>\r\n  <editorInfo>\r\n    <BehaviorTree id=\"0\" _name=\"Garchomp-Behavior\"
+    _description=\"\" _removeIfClosed=\"False\">\r\n      <_rootList>\r\n       
+    <elem>\r\n          <ActionNode id=\"12\" />\r\n        </elem>\r\n        <elem>\r\n         
+    <ConditionNode id=\"13\" />\r\n        </elem>\r\n        <elem>\r\n         
+    <ActionNode id=\"14\" />\r\n        </elem>\r\n        <elem>\r\n          <SequenceNode
+    id=\"15\" />\r\n        </elem>\r\n        <elem>\r\n          <SelectorNode
+    id=\"20\" />\r\n        </elem>\r\n      </_rootList>\r\n      <_nodes>\r\n       
+    <nodes>\r\n          <ActionNode id=\"12\" />\r\n          <SequenceNode id=\"15\"
+    />\r\n          <ConditionNode id=\"13\" />\r\n          <ActionNode id=\"14\"
+    />\r\n          <SelectorNode id=\"20\" />\r\n        </nodes>\r\n      </_nodes>\r\n   
+    </BehaviorTree>\r\n    <SelectorNode id=\"20\">\r\n      <_data>\r\n        <data
+    breakpoint=\"0\" selected=\"False\" position=\"595.7142 221.4286\" name=\"Selector\"
+    description=\"Executes all its children until one of them is successful\" cardinality=\"-1\"
+    hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n          <SelectorNode
+    id=\"20\" />\r\n        </data>\r\n      </_data>\r\n    </SelectorNode>\r\n   
+    <SequenceNode id=\"15\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"485.0596 407.0474\" name=\"Sequence\" description=\"Executes all its
+    children in sequence until all of them are successful\" cardinality=\"-1\" hasParent=\"True\">\r\n         
+    <BehaviorTree id=\"0\" />\r\n          <SequenceNode id=\"15\" />\r\n         
+    <SelectorNode id=\"20\" />\r\n        </data>\r\n      </_data>\r\n    </SequenceNode>\r\n   
+    <ActionNode id=\"14\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"755.9879 441.726\" name=\"MyActions/Wander\" description=\"\" cardinality=\"0\"
+    hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ActionNode
+    id=\"14\" />\r\n          <SelectorNode id=\"20\" />\r\n        </data>\r\n     
+    </_data>\r\n    </ActionNode>\r\n    <ConditionNode id=\"13\">\r\n      <_data>\r\n       
+    <data breakpoint=\"0\" selected=\"False\" position=\"370.0947 582.2262\" name=\"MyConditions/IsTargetVisible\"
+    description=\"\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
+    id=\"0\" />\r\n          <ConditionNode id=\"13\" />\r\n          <SequenceNode
+    id=\"15\" />\r\n        </data>\r\n      </_data>\r\n    </ConditionNode>\r\n   
+    <ActionNode id=\"12\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"True\"
+    position=\"588.1315 577.5836\" name=\"MyActions/ChaseAndDestroy\" description=\"\"
+    cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n         
+    <ActionNode id=\"12\" />\r\n          <SequenceNode id=\"15\" />\r\n        </data>\r\n     
+    </_data>\r\n    </ActionNode>\r\n    <ConditionEvalNode id=\"0\">\r\n      <_data>\r\n       
+    <data breakpoint=\"0\" selected=\"False\" position=\"0 0\" name=\"AlwaysTrue\"
+    description=\"Eval\" cardinality=\"1\" hasParent=\"False\">\r\n          <BehaviorTree
+    id=\"0\" />\r\n        </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n 
+    </editorInfo>\r\n</BehaviorBricks>"
+  zoom: 0.7
+  subslist: []
+  _guid: 97f475416bc3f5a4c956aca84623cc95

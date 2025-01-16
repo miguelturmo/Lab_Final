@@ -5,42 +5,54 @@ using BBUnity.Conditions;
 using Pada1.BBCore;
 using Pada1.BBCore.Tasks;
 using System.Linq;
+using Unity.VisualScripting;
 
-[Condition("MyConditions/IsTargetVisible")]
-public class IsTargetVisible : GOCondition
+
+[Condition("MyConditions/IsPreyVisible")]
+public class IsPreyVisible : GOCondition
 {
-    [InParam("detectionRange")]
-    public float detectionRange = 10f;
+    [InParam("detectionRadius")]
+    public float detectionRadius = 10f;
 
-    [OutParam("detectedPrey")]
-    public GameObject detectedPrey;
+    [InParam("preyLayer")]
+    public LayerMask preyLayer;
+
+    [InParam("requireLineOfSight", DefaultValue = true)]
+    public bool requireLineOfSight = true;
+
+    [OutParam("targetPrey")]
+    public GameObject targetPrey;
 
     public override bool Check()
     {
-        // Buscar presas en el radio de detección
-        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, detectionRange);
-        float closestDistance = float.MaxValue;
-        GameObject closestPrey = null;
+        // Detectar presas en el radio
+        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, detectionRadius, preyLayer);
 
-        foreach (var hitCollider in hitColliders)
+        foreach (var collider in colliders)
         {
-            // Verificar si el objeto tiene el componente Prey
-            if (hitCollider.GetComponent<Prey>() != null)
+            // Si requerimos línea de visión, hacer un raycast
+            if (requireLineOfSight)
             {
-                float distance = Vector3.Distance(gameObject.transform.position, hitCollider.transform.position);
-                if (distance < closestDistance)
+                Vector3 directionToTarget = (collider.transform.position - gameObject.transform.position).normalized;
+                float distanceToTarget = Vector3.Distance(gameObject.transform.position, collider.transform.position);
+
+                // Verificar si hay obstáculos entre el cazador y la presa
+                if (Physics.Raycast(gameObject.transform.position, directionToTarget, out RaycastHit hit, distanceToTarget))
                 {
-                    closestDistance = distance;
-                    closestPrey = hitCollider.gameObject;
+                    if (hit.collider != collider) continue; // Si golpeamos algo que no es la presa, ignorar esta presa
                 }
             }
+
+            targetPrey = collider.gameObject;
+            return true;
         }
 
-        detectedPrey = closestPrey;
-        return closestPrey != null;
+        targetPrey = null;
+        return false;
     }
 }
-    [Action("MyActions/Wander")]
+
+[Action("MyActions/Wander")]
 public class Wander : GOAction
 {
     [InParam("wanderRadius")]
@@ -109,50 +121,74 @@ public class Wander : GOAction
         }
     }
 }
-[Action("MyActions/ChaseAndDestroy")]
-public class ChaseAndDestroy : GOAction
+[Action("MyActions/ChasePrey")]
+public class ChasePrey : GOAction
 {
-    [InParam("prey")]
-    public GameObject prey;
+    [InParam("targetPrey")]
+    public GameObject targetPrey;
 
-    [InParam("attackRange")]
-    public float attackRange = 2f;
-
-    [InParam("attackDamage")]
-    public float attackDamage = 25f;
+    [InParam("updateInterval")]
+    public float updateInterval = 0.2f;
 
     private NavMeshAgent agent;
-    private float attackCooldown = 1f;
-    private float nextAttackTime = 0f;
+    private float nextPathUpdate;
+    private float originalSpeed;
 
     public override void OnStart()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
-        if (agent == null)
+
+        // Guardar y aumentar velocidad
+        originalSpeed = agent.speed;
+        agent.speed *= 1.5f;
+
+        if (targetPrey != null)
         {
-            Debug.LogError("NavMeshAgent no encontrado en el objeto!");
+            agent.SetDestination(targetPrey.transform.position);
         }
     }
 
     public override TaskStatus OnUpdate()
     {
-        if (prey == null || agent == null)
+        if (targetPrey == null)
             return TaskStatus.FAILED;
 
-        // Actualizar destino del NavMeshAgent
-        agent.SetDestination(prey.transform.position);
-
-        // Verificar si está en rango de ataque
-        float distanceToPrey = Vector3.Distance(gameObject.transform.position, prey.transform.position);
-        if (distanceToPrey <= attackRange && Time.time >= nextAttackTime)
+        if (Time.time >= nextPathUpdate)
         {
-            // Atacar a la presa
-            Prey preyComponent = prey.GetComponent<Prey>();
-            if (preyComponent != null)
-            {
-                preyComponent.TakeDamage(attackDamage);
-                nextAttackTime = Time.time + attackCooldown;
-            }
+            agent.SetDestination(targetPrey.transform.position);
+            nextPathUpdate = Time.time + updateInterval;
+        }
+
+        return TaskStatus.RUNNING;
+    }
+
+    public override void OnEnd()
+    {
+        if (agent != null)
+            agent.speed = originalSpeed;
+    }
+}
+
+[Action("MyActions/CapturePrey")]
+public class CapturePrey : GOAction
+{
+    [InParam("captureDistance")]
+    public float captureDistance = 1f;
+
+    [InParam("targetPrey")]
+    public GameObject targetPrey;
+
+    public override TaskStatus OnUpdate()
+    {
+        if (targetPrey == null)
+            return TaskStatus.FAILED;
+
+        float distance = Vector3.Distance(gameObject.transform.position, targetPrey.transform.position);
+
+        if (distance <= captureDistance)
+        {
+            targetPrey.IsDestroyed();
+            return TaskStatus.COMPLETED;
         }
 
         return TaskStatus.RUNNING;

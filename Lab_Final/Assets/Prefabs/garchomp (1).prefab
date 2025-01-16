@@ -67,5 +67,133 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9f2d29fd4054ba84ea25a1f0f15e24ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1007281631902950601}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9f2d29fd4054ba84ea25a1f0f15e24ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4635370589737599667}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9f2d29fd4054ba84ea25a1f0f15e24ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8205010907330076129}
   m_SourcePrefab: {fileID: 100100000, guid: 9f2d29fd4054ba84ea25a1f0f15e24ff, type: 3}
+--- !u!1 &6174069135224504706 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9f2d29fd4054ba84ea25a1f0f15e24ff, type: 3}
+  m_PrefabInstance: {fileID: 6444610364768238803}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &1007281631902950601
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6174069135224504706}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!136 &4635370589737599667
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6174069135224504706}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.05
+  m_Height: 0.64
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-8205010907330076129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6174069135224504706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 422fb6956201c7944ae2113a1a53b0b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxTasksPerTick: 500
+  behavior: {fileID: 11400000, guid: 97f475416bc3f5a4c956aca84623cc95, type: 2}
+  paused: 0
+  restartWhenFinished: 0
+  blackboard:
+    intParams: 
+    intParamsNames: []
+    intParamsLostDefaultValue: 
+    boolParams: 
+    boolParamsNames: []
+    boolParamsLostDefaultValue: 
+    floatParams: []
+    floatParamsNames: []
+    floatParamsLostDefaultValue: 
+    stringParams: []
+    stringParamsNames: []
+    stringParamsLostDefaultValue: 
+    colorParams: []
+    colorParamsNames: []
+    colorParamsLostDefaultValue: 
+    objectParams:
+    - {fileID: 8878402787579206288, guid: 60772ef0ae1d69448ae518830f56c575, type: 3}
+    objectParamsNames:
+    - detectedPrey
+    objectParamsLostDefaultValue: 
+    layerMaskParams:
+    - serializedVersion: 2
+      m_Bits: 8
+    layerMaskParamsNames:
+    - preyLayer
+    layerMaskParamsLostDefaultValue: 
+    enumParamsNames: []
+    enumParamsLostDefaultValue: 
+    vector2Params: []
+    vector2ParamsNames: []
+    vector2ParamsLostDefaultValue: 
+    vector3Params: []
+    vector3ParamsNames: []
+    vector3ParamsLostDefaultValue: 
+    vector4Params: []
+    vector4ParamsNames: []
+    vector4ParamsLostDefaultValue: 
+    rectParams: []
+    rectParamsNames: []
+    rectParamsLostDefaultValue: 
+    animationCurveParams: []
+    animationCurveParamsNames: []
+    animationCurveParamsLostDefaultValue: 
+    boundsParams: []
+    boundsParamsNames: []
+    boundsParamsLostDefaultValue: 
+    gradientParams: []
+    gradientParamsNames: []
+    gradientParamsLostDefaultValue: 
+    quaternionParams: []
+    quaternionParamsNames: []
+    quaternionParamsLostDefaultValue: 

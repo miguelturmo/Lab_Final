@@ -27,7 +27,6 @@ public class CharacterControllerFSM : MonoBehaviour
 
         agent.speed = walkSpeed;
     }
-
     void Update()
     {
         if (isHit)
@@ -47,7 +46,6 @@ public class CharacterControllerFSM : MonoBehaviour
             agent.isStopped = false; 
         }
 
-        // Control de la stamina
         if (stamina < 100 && stateInfo.IsName("Chill") && !animator.IsInTransition(0))
         {
             stamina += staminaRecoveryRate * Time.deltaTime;

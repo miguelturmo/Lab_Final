@@ -6,7 +6,7 @@ public class TyranitarBehaviour : MonoBehaviour
     public Transform treasure;
     public GameObject aggron;
     public float aggronDetectionRadius = 3.0f;
-    public float wanderRadius = 10.0f;
+    public float wanderRadius = 25.0f;
     public float wanderInterval = 3.0f;
 
     private NavMeshAgent agent;
@@ -56,7 +56,7 @@ public class TyranitarBehaviour : MonoBehaviour
         float distanceToTreasure = Vector3.Distance(transform.position, treasure.position);
         Debug.Log($"Distancia a Aggron: {distanceToAggron}, Distancia al tesoro: {distanceToTreasure}");
 
-        if (distanceToAggron > aggronDetectionRadius && distanceToTreasure <= 5.5f)
+        if (distanceToAggron > aggronDetectionRadius && distanceToTreasure <= 8.5f)
         {
             Debug.Log("Oportunidad para robar detectada.");
             currentState = State.Stealing;

@@ -182,6 +182,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6264900439208294344, guid: 65df0d697f638cf4ba8b9ee26b27a675, type: 3}
+      propertyPath: treasure
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6298067555596302121, guid: 65df0d697f638cf4ba8b9ee26b27a675, type: 3}
       propertyPath: m_Name
       value: RockTreasure
@@ -1000,15 +1004,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7852135612902674469, guid: bac6dd500aaef6348b481870801511c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.5
+      value: 26.1
       objectReference: {fileID: 0}
     - target: {fileID: 7852135612902674469, guid: bac6dd500aaef6348b481870801511c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.400002
+      value: 8.01
       objectReference: {fileID: 0}
     - target: {fileID: 7852135612902674469, guid: bac6dd500aaef6348b481870801511c8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -57.9
+      value: -55.7
       objectReference: {fileID: 0}
     - target: {fileID: 7852135612902674469, guid: bac6dd500aaef6348b481870801511c8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1763,7 +1767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3973937664514293153, guid: e9f8200cf84ab6d4ba81a96b291ba677, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.4
+      value: 8.36
       objectReference: {fileID: 0}
     - target: {fileID: 3973937664514293153, guid: e9f8200cf84ab6d4ba81a96b291ba677, type: 3}
       propertyPath: m_LocalPosition.z

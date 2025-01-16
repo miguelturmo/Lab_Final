@@ -121,14 +121,17 @@ public class Wander : GOAction
         }
     }
 }
-[Action("MyActions/ChasePrey")]
-public class ChasePrey : GOAction
+[Action("MyActions/ChaseAndCapturePrey")]
+public class ChaseAndCapturePrey : GOAction
 {
     [InParam("targetPrey")]
     public GameObject targetPrey;
 
     [InParam("updateInterval")]
     public float updateInterval = 0.2f;
+
+    [InParam("captureDistance")]
+    public float captureDistance = 1f;
 
     private NavMeshAgent agent;
     private float nextPathUpdate;
@@ -138,7 +141,7 @@ public class ChasePrey : GOAction
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
 
-        // Guardar y aumentar velocidad
+        // Guardar y aumentar velocidad para la persecución
         originalSpeed = agent.speed;
         agent.speed *= 1.5f;
 
@@ -153,6 +156,16 @@ public class ChasePrey : GOAction
         if (targetPrey == null)
             return TaskStatus.FAILED;
 
+        // Verificar si estamos lo suficientemente cerca para capturar
+        float distance = Vector3.Distance(gameObject.transform.position, targetPrey.transform.position);
+        if (distance <= captureDistance)
+        {
+            // Destruir la presa
+            GameObject.Destroy(targetPrey);
+            return TaskStatus.COMPLETED;
+        }
+
+        // Si no estamos lo suficientemente cerca, continuamos persiguiendo
         if (Time.time >= nextPathUpdate)
         {
             agent.SetDestination(targetPrey.transform.position);
@@ -166,31 +179,5 @@ public class ChasePrey : GOAction
     {
         if (agent != null)
             agent.speed = originalSpeed;
-    }
-}
-
-[Action("MyActions/CapturePrey")]
-public class CapturePrey : GOAction
-{
-    [InParam("captureDistance")]
-    public float captureDistance = 1f;
-
-    [InParam("targetPrey")]
-    public GameObject targetPrey;
-
-    public override TaskStatus OnUpdate()
-    {
-        if (targetPrey == null)
-            return TaskStatus.FAILED;
-
-        float distance = Vector3.Distance(gameObject.transform.position, targetPrey.transform.position);
-
-        if (distance <= captureDistance)
-        {
-            targetPrey.IsDestroyed();
-            return TaskStatus.COMPLETED;
-        }
-
-        return TaskStatus.RUNNING;
     }
 }

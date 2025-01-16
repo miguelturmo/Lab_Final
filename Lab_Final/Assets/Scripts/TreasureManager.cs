@@ -29,13 +29,5 @@ public class TreasureManager : MonoBehaviour
             }
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Tyranitar") && treasure.activeInHierarchy)
-        {
-            Debug.Log("Tesoro robado por Tyranitar.");
-            treasure.SetActive(false);
-        }
-    }
 }
+

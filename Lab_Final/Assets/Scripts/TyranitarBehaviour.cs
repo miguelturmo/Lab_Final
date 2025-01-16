@@ -66,17 +66,13 @@ public class TyranitarBehaviour : MonoBehaviour
 
     private void StealTreasure()
     {
-        if (!agent.pathPending && agent.remainingDistance > 0.5f)
-        {
-            Debug.Log("Tyranitar moviéndose hacia el tesoro.");
-            return;
-        }
+        Debug.Log($"Distancia restante al tesoro: {agent.remainingDistance}");
 
-        if (Vector3.Distance(transform.position, treasure.position) <= 0.5f)
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance + 0.2f) // Ajusta la tolerancia
         {
             Debug.Log("Tesoro robado!");
-            treasure.gameObject.SetActive(false);
-            currentState = State.Wandering;
+            treasure.gameObject.SetActive(false); // Desactiva el tesoro
+            currentState = State.Wandering;       // Cambia al estado de Wandering
         }
     }
 

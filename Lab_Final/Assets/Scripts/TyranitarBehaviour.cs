@@ -54,11 +54,13 @@ public class TyranitarBehaviour : MonoBehaviour
     {
         float distanceToAggron = Vector3.Distance(transform.position, aggron.transform.position);
         float distanceToTreasure = Vector3.Distance(transform.position, treasure.position);
-        Debug.Log($"Distancia a Aggron: {distanceToAggron}, Distancia al tesoro: {distanceToTreasure}");
 
-        if (distanceToAggron > aggronDetectionRadius && distanceToTreasure <= 8.5f)
+        //check if treasure active
+        if (treasure.gameObject.activeInHierarchy &&
+            distanceToAggron > aggronDetectionRadius &&
+            distanceToTreasure <= 8.5f)
         {
-            Debug.Log("Oportunidad para robar detectada.");
+            //Debug.Log("Oportunidad para robar detectada");
             currentState = State.Stealing;
             agent.SetDestination(treasure.position);
         }
@@ -66,13 +68,16 @@ public class TyranitarBehaviour : MonoBehaviour
 
     private void StealTreasure()
     {
-        Debug.Log($"Distancia restante al tesoro: {agent.remainingDistance}");
+        //Debug.Log($"Distancia restante al tesoro: {agent.remainingDistance}");
 
-        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance + 0.2f) // Ajusta la tolerancia
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance + 0.2f)
         {
-            Debug.Log("Tesoro robado!");
-            treasure.gameObject.SetActive(false); // Desactiva el tesoro
-            currentState = State.Wandering;       // Cambia al estado de Wandering
+            if (treasure.gameObject.activeInHierarchy)
+            {
+                //Debug.Log("Tesoro robado");
+                treasure.gameObject.SetActive(false);
+            }
+            currentState = State.Wandering;
         }
     }
 
@@ -87,4 +92,3 @@ public class TyranitarBehaviour : MonoBehaviour
         return navHit.position;
     }
 }
-

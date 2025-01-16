@@ -13,7 +13,7 @@ public class TreasureManager : MonoBehaviour
         if (!treasure.activeInHierarchy && !isStolen)
         {
             isStolen = true;
-            Debug.Log("El tesoro ha sido robado.");
+            //Debug.Log("Treasure stolen");
         }
 
         if (isStolen)
@@ -25,7 +25,7 @@ public class TreasureManager : MonoBehaviour
                 treasure.SetActive(true);
                 isStolen = false;
                 timer = 0.0f;
-                Debug.Log("El tesoro ha reaparecido.");
+                //Debug.Log("Treasure Respawned");
             }
         }
     }
